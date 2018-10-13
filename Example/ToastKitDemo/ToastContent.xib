@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="CMD-Gr-f2C" customClass="xw">
+            <rect key="frame" x="0.0" y="0.0" width="314" height="98"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oops! It seems you are not connected to the Internet!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8IG-Rr-99O">
+                    <rect key="frame" x="14" y="12" width="286" height="66"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.7725490196" green="0.39607843139999999" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="0.81176470590000005" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="8IG-Rr-99O" firstAttribute="leading" secondItem="8xX-Zw-04j" secondAttribute="leading" constant="14" id="3LL-Bz-qeq"/>
+                <constraint firstItem="8IG-Rr-99O" firstAttribute="top" secondItem="8xX-Zw-04j" secondAttribute="top" constant="12" id="FZE-pc-4hY"/>
+                <constraint firstItem="8xX-Zw-04j" firstAttribute="trailing" secondItem="8IG-Rr-99O" secondAttribute="trailing" constant="14" id="Pht-xX-hOS"/>
+                <constraint firstItem="8xX-Zw-04j" firstAttribute="bottom" secondItem="8IG-Rr-99O" secondAttribute="bottom" constant="20" id="YxJ-qD-t1x"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="8xX-Zw-04j"/>
+            <point key="canvasLocation" x="-275.19999999999999" y="129.53523238380811"/>
+        </view>
+    </objects>
+</document>
