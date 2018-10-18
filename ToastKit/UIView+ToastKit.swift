@@ -11,7 +11,7 @@ import UIKit
 public extension UIView {
     
     private enum AssociatedKey {
-        static var Toast = "io.lorenzoboaro.toast"
+        static var Toast = "io.lorenzoboaro.Toast-Kit"
     }
     
     public func showToast(embedding contentView: UIView, duration: TimeInterval = 0.3) {
@@ -27,7 +27,7 @@ public extension UIView {
         
         toastView.addSubview(contentView)
         
-        // constraints for content view
+        // constraints for the content view
         NSLayoutConstraint.activate([
             contentView.leadingAnchor.constraint(equalTo: toastView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: toastView.trailingAnchor),
@@ -40,13 +40,12 @@ public extension UIView {
         let height = toastView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         assert(height > 0, "The content view's height has not been calculated")
         
-        // constaints for container view
+        // constaints for the container view
         let topConstraint = toastView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -height)
         NSLayoutConstraint.activate([
             toastView.leadingAnchor.constraint(equalTo: leadingAnchor),
             toastView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            topConstraint,
-            toastView.heightAnchor.constraint(equalToConstant: height)
+            topConstraint
         ])
         
         layoutIfNeeded()
@@ -61,8 +60,7 @@ public extension UIView {
     
     public func hideToast(duration: TimeInterval = 0.2) {
         
-        guard !ToastCoordinator.isToastHidden,
-            let view = objc_getAssociatedObject(self, &AssociatedKey.Toast) as? UIView else { return }
+        guard let view = objc_getAssociatedObject(self, &AssociatedKey.Toast) as? UIView else { return }
         
         UIView.animate(withDuration: duration, animations: {
             view.alpha = 0
@@ -73,25 +71,25 @@ public extension UIView {
     }
 }
 
-private enum ToastVisibility {
+enum ToastVisibility {
     case visible
     case hidden
 }
 
-private final class ToastCoordinator {
+final class ToastCoordinator {
     
-    private var visibility = ToastVisibility.hidden
+    static let shared = ToastCoordinator()
     
-    private init() { }
-    
-    private static let shared = ToastCoordinator()
-    
-    static var toastVisibility: ToastVisibility {
+    fileprivate static var toastVisibility: ToastVisibility {
         get { return shared.visibility }
         set { shared.visibility = newValue }
     }
     
-    static var isToastHidden: Bool {
+    fileprivate static var isToastHidden: Bool {
         return shared.visibility == .hidden
     }
+    
+    private var visibility = ToastVisibility.hidden
+    
+    private init() { }
 }

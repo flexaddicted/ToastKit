@@ -10,16 +10,14 @@ import UIKit
 import ToastKit
 
 class ViewController: UIViewController {
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-            self.view.showToast(embedding: ToastContentView.create(), duration: 0.4)
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4) {
+    
+    @IBOutlet var internetSwicth: UISwitch!
+    
+    @IBAction func switchDidToggle(_ sender: Any) {
+        if internetSwicth.isOn {
             self.view.hideToast()
+        } else {
+            self.view.showToast(embedding: ToastContentView.create(), duration: 0.4)
         }
     }
 }
