@@ -34,7 +34,7 @@ Setup Instructions
 To integrate Toast-Swift into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-pod 'ToastKit', :git => 'https://github.com/flexaddicted/ToastKit.git', :tag => '1.0.0'
+pod 'ToastKit', :git => 'https://github.com/flexaddicted/ToastKit.git', :tag => '1.1.0'
 ```
 
 and in your code add `import ToastKit`.
