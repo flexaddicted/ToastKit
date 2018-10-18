@@ -5,7 +5,7 @@ ToastKit is a Swift extension that add a toast notification to `UIView` class.
 
 Screenshot
 ---------
-![ToastKit Screenshot](toast-screenshot.png)
+![ToastKit Screenshot](toast-screenshot.gif)
 
 
 Usage
