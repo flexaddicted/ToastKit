@@ -24,6 +24,12 @@ self.view.hideToast()
 self.view.hideToast(duration: 0.4)
 ```
 
+To display the toast over the status bar simple use the following code:
+
+```swift
+ToastCoordinator.displayOverStatusBar = true
+```
+
 
 Setup Instructions
 ------------------
