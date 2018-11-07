@@ -13,6 +13,13 @@ class ViewController: UIViewController {
     
     @IBOutlet var internetSwicth: UISwitch!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Set displayOverStatusBar property to true to display the toast over the status bar
+        ToastCoordinator.displayOverStatusBar = false
+    }
+    
     @IBAction func switchDidToggle(_ sender: Any) {
         if internetSwicth.isOn {
             self.view.hideToast()

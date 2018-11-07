@@ -27,7 +27,7 @@ public extension UIView {
         
         toastView.addSubview(contentView)
         
-        // constraints for the content view
+        // Constraints for the content view
         NSLayoutConstraint.activate([
             contentView.leadingAnchor.constraint(equalTo: toastView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: toastView.trailingAnchor),
@@ -40,8 +40,9 @@ public extension UIView {
         let height = toastView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         assert(height > 0, "The content view's height has not been calculated")
         
-        // constaints for the container view
-        let topConstraint = toastView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -height)
+        // Constraints for the container view
+        let chosenTopAnchor = ToastCoordinator.displayOverStatusBar ? topAnchor : safeAreaLayoutGuide.topAnchor
+        let topConstraint = toastView.topAnchor.constraint(equalTo: chosenTopAnchor, constant: -height)
         NSLayoutConstraint.activate([
             toastView.leadingAnchor.constraint(equalTo: leadingAnchor),
             toastView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -64,10 +65,10 @@ public extension UIView {
         
         UIView.animate(withDuration: duration, animations: {
             view.alpha = 0
-        }) { _ in
+        }, completion: { _ in
             view.removeFromSuperview()
             ToastCoordinator.toastVisibility = .hidden
-        }
+        })
     }
 }
 
@@ -76,20 +77,24 @@ enum ToastVisibility {
     case hidden
 }
 
-final class ToastCoordinator {
-    
+public final class ToastCoordinator {
     static let shared = ToastCoordinator()
     
-    fileprivate static var toastVisibility: ToastVisibility {
-        get { return shared.visibility }
-        set { shared.visibility = newValue }
+    private var _visibility = ToastVisibility.hidden
+    static var toastVisibility: ToastVisibility {
+        get { return shared._visibility }
+        set { shared._visibility = newValue }
     }
     
-    fileprivate static var isToastHidden: Bool {
-        return shared.visibility == .hidden
+    static var isToastHidden: Bool {
+        return shared._visibility == .hidden
     }
     
-    private var visibility = ToastVisibility.hidden
+    private var _displayOverStatusBar = false
+    public static var displayOverStatusBar: Bool {
+        get { return shared._displayOverStatusBar }
+        set { shared._displayOverStatusBar = newValue }
+    }
     
     private init() { }
 }
